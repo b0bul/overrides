@@ -1,0 +1,30 @@
+provider "aws" {
+  region = "eu-west-2"
+  assume_role {
+    role_arn = "arn:aws:iam::${local.account_number}:role/OrganizationAccountAccessRole"
+  }
+  default_tags {
+    tags = local.default_tags
+  }
+}
+
+provider "aws" {
+  region = "eu-west-2"
+  alias  = "master"
+}
+
+provider "aws" {
+  region = "eu-west-2"
+  alias  = "logs"
+  assume_role {
+    role_arn = "arn:aws:iam::${local.account_number_logs}:role/OrganizationAccountAccessRole"
+  }
+}
+
+provider "aws" {
+  region = "eu-west-2"
+  alias  = "transit-live"
+  assume_role {
+    role_arn = "arn:aws:iam::${local.transit_account_id}:role/OrganizationAccountAccessRole"
+  }
+}

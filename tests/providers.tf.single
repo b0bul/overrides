@@ -1,0 +1,22 @@
+provider "aws" {
+  region = "eu-west-2"
+  assume_role {
+    role_arn = "arn:aws:iam::${local.account_number}:role/OrganizationAccountAccessRole"
+  }
+  default_tags {
+    tags = local.default_tags
+  }
+}
+
+provider "aws" {
+  region              = "eu-west-2"
+  alias               = "testing"
+  allowed_account_ids = [local.logs_account_id]
+
+  assume_role {
+    role_arn = "arn:aws:iam::${local.logs_account_id}:role/OrganizationAccountAccessRole"
+  }
+  default_tags {
+    tags = local.default_tags
+  }
+}

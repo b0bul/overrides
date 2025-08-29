@@ -1,0 +1,43 @@
+provider "aws" {
+  region              = "eu-west-2"
+  alias               = "testing"
+  allowed_account_ids = [local.logs_account_id]
+
+  assume_role {
+    role_arn = "arn:aws:iam::${local.logs_account_id}:role/OrganizationAccountAccessRole"
+  }
+  default_tags {
+    tags = {
+      "Repository" = local.repository_name
+    }
+  }
+}
+
+
+provider "aws" {
+  region              = "eu-west-2"
+  alias               = "testing"
+  allowed_account_ids = [local.logs_account_id]
+
+  assume_role {
+    role_arn = "arn:aws:iam::${local.logs_account_id}:role/OrganizationAccountAccessRole"
+  }
+  default_tags {
+    tags = {
+      "Repository" = local.repository_name
+    }
+  }
+}
+
+provider "aws" {
+  region              = "eu-west-2"
+  alias               = "testing"
+  allowed_account_ids = [local.logs_account_id]
+
+  assume_role {
+    role_arn = "arn:aws:iam::${local.logs_account_id}:role/OrganizationAccountAccessRole"
+  }
+  default_tags {
+    tags = local.default_tags
+  }
+}
