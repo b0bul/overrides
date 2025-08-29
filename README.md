@@ -133,11 +133,11 @@ ensure that you're logged in with sso before running the tool, aws cli will crea
 
 # Rate limits
 Roles are fetched using next tokens per account. When the tool is too fast aws returns a `TooManyRequestsException` in this case requests are incrementally backked off and retried, reguardless of the retry log, the api will only response to a maximum of 3 attempts within the grace period. If you exceed this number of attempts the following two error messages will be returned: 
-```
+```bash
 operation error SSO: ListAccountRoles, failed to get rate limit token, retry quota exceeded, 4 available, 5 requested
 ```
 and
-```
+```bash
 operation error SSO: ListAccountRoles, exceeded maximum number of attempts, 3, https response error StatusCode: 429, RequestID: 702b0153-c44e-4a6f-aad6-e661a876996f, TooManyRequestsException: HTTP 429 Unknown Code
 ```
 The more account we add and the more roles per account we add the more requests the tool will have to make. The above messages are telling us that the request limit for the ListAccountRoles api is 4 per second but 5 were requested, and that 3 attempts of the same request exceed the rate limit.
