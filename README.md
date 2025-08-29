@@ -145,19 +145,19 @@ The more account we add and the more roles per account we add the more requests 
 The `--batchsize` allows you to adjust how roles are grouped and processed into blocks as the number of accounts increases. The `--workers` tunable allows you to pass how many workers should be used to processed these chunks.
 # Further Config
 This tool's default behaviour can be extended with a `mapping.hcl` file. This file is read in and used to build the `overrides.tf` file when the default behaviour is not enough. There are 2 `keywords` in this file that the tool is aware of `default` and `unaliased`. Since overrides job is to build new providers file with credentials that the local user has access to, when using cross account providers this requires the `mappings.hcl` file. The `default` keyword applies to all providers hence, "default" when you specific this in the mappings file it replaces all credentials for all *aliased* providers with this mapping.
-```
+```hcl
 override default {
     profile = "<org>-<Account>-<Environment>-<Role>
 }
 ``` 
 to do the same thing for an unalised provider, `override apply` also has a tertiery option for allows you to override the environment of this provider `override apply --alias dev`
-```
+```hcl
 override unaliased {
     profile = "<org>-<Account>-<Environment>-<Role>
 }
 ``` 
 For special cases where you want to change the behaviour of a specific provider, you specify the override by provider alias name 
- ```
+ ```hcl
 override <org>-my-alias-A {
     profile = "<org>-<AccountA>-<Environment>-<Role>
 }
