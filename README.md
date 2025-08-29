@@ -42,7 +42,7 @@ $env:GONOPROXY = "github.com/<org>/override"
 ## Installation notes
 To authenticate to github in order to install the tool, create a `$HOME/.netrc` file with this content
 ```
-machine github.com login <handle>_SLCGOVUK password <TOKEN>
+machine github.com login <handle>_<org> password <TOKEN>
 ```
 You can get a token for this file via `gh auth token` (you have to be logged via the tool to get a token)
 
